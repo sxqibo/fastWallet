@@ -6,7 +6,10 @@
   "autoload": {
     "psr-4": {
       "Sxqibo\\FastWallet\\": "src/"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "authors": [
     {
@@ -16,7 +19,7 @@
   ],
   "require": {
     "php": ">=7.4",
-    "topthink/framework": "^6.0.0",
+    "topthink/framework": ">=6.0.0",
     "topthink/think-migration": "^3.0"
   },
   "require-dev": {

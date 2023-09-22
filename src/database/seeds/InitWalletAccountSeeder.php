@@ -1,7 +1,5 @@
 <?php
 
-namespace seeds;
-
 use think\migration\Seeder;
 
 class InitWalletAccountSeeder extends Seeder

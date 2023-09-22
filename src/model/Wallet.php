@@ -11,7 +11,7 @@ class Wallet extends Model
      * 与模型关联的表名
      * @var string
      */
-    protected $name = '';
+    protected $name = 'tenant_wallet';
 
     protected $autoWriteTimestamp = true;
 }
