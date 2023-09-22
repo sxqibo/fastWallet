@@ -1,6 +1,6 @@
 {
   "name": "sxqibo/fast-wallet",
-  "description": "钱包公共模块，适用于thinkphp框架",
+  "description": "钱包公共模块，适用于thinkphp6以上框架",
   "type": "library",
   "license": "MIT",
   "autoload": {
