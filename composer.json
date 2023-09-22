@@ -1,0 +1,24 @@
+{
+  "name": "sxqibo/fast-wallet",
+  "description": "钱包公共模块，适用于thinkphp框架",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Sxqibo\\FastWallet\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "weifeng",
+      "email": "50098161@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "topthink/framework": "^6.0.0",
+    "topthink/think-migration": "^3.0"
+  },
+  "require-dev": {
+  }
+}
