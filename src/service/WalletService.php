@@ -90,12 +90,22 @@ class WalletService
         $toName    = $this->getUserNameByUserType($toWallet->user_type, $toWallet->user_id);
         $orderType = !empty($orderType) ? $orderType : '';
 
-        $extra    = [
+        $extra = [
             'from_origin_balance'  => $fromWallet->origin_balance,
             'from_changed_balance' => $fromWallet->balance,
             'to_origin_balance'    => $toWallet->origin_balance,
             'to_changed_balance'   => $toWallet->balance,
         ];
+
+        $fromUserType  = $fromWallet->user_type;
+        $toUserType    = $toWallet->user_type;
+        $userBalance   = 0;
+        $tenantBalance = 0;
+        if (in_array($fromUserType, ['U', 'A']) && in_array($toUserType, ['U', 'A'])) {
+            $userBalance   = $fromUserType == 'U' ? $fromWallet->balance : $toWallet->balance;
+            $tenantBalance = $fromUserType == 'A' ? $fromWallet->balance : $toWallet->balance;
+        }
+
         $flowData = [
             'user_id'         => $userId,
             'tenant_id'       => $tenantId,
@@ -109,11 +119,13 @@ class WalletService
             'order_number'    => $order->order_number ?? '',
             'order_type'      => $orderType,
 
-            'trade_time'    => time(),
-            'trade_title'   => $tradeTitle,
-            'trade_content' => '',
-            'memo'          => $memo,
-            'trade_amount'  => $tradeAmount,
+            'trade_time'     => time(),
+            'trade_title'    => $tradeTitle,
+            'trade_content'  => '',
+            'memo'           => $memo,
+            'trade_amount'   => $tradeAmount, // 交易金额
+            'tenant_balance' => $tenantBalance, // 租户余额
+            'user_balance'   => $userBalance, // 用户余额
 
             'trade_from_user_type' => $fromWallet->user_type,
             'trade_from_user_id'   => $fromWallet->user_id,

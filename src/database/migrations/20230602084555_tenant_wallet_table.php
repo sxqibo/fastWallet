@@ -113,6 +113,8 @@ class TenantWalletTable extends Migrator
             ->addColumn('trade_title', 'string', ['comment' => '交易标题'])
             ->addColumn('trade_number', 'string', ['limit' => 30, 'comment' => '交易号'])
             ->addColumn('trade_amount', 'decimal', ['scale' => 2, 'precision' => 10, 'default' => 0.00, 'comment' => '交易金额'])
+            ->addColumn('user_balance', 'decimal', ['scale' => 2, 'precision' => 16, 'default' => 0.00, 'comment' => '用户余额'])
+            ->addColumn('tenant_balance', 'decimal', ['scale' => 2, 'precision' => 16, 'default' => 0.00, 'comment' => '租户余额'])
             ->addColumn('trade_time', 'string', ['limit' => 10, 'default' => '', 'comment' => '交易时间'])
             ->addColumn('trade_content', 'text', ['comment' => '交易json报文明细'])
 

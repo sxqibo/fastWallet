@@ -16,7 +16,7 @@ class WalletFlow extends Model
      * 追加字段
      * @var array
      */
-    protected $append = ['business_type_text', 'trade_time_text'];
+    protected $append = ['business_type_text', 'trade_time_text', 'user_origin_balance'];
 
     /**
      * 业务类型定义
@@ -46,5 +46,29 @@ class WalletFlow extends Model
     {
         $tradeTime = $data['trade_time'] ?? '';
         return $tradeTime ? date('Y-m-d H:i', $tradeTime) : '';
+    }
+
+    /**
+     * 获取用户变更前余额
+     */
+    public function getUserOriginBalanceAttr($value, $data)
+    {
+        $extra = $data['extra'] ?? '';
+        if (!empty($extra) && is_string($extra)) {
+            $extra = json_decode($extra, true);
+        }
+
+        $tradeFromUserType = $data['trade_from_user_type'];
+        $tradeToUserType   = $data['trade_to_user_type'];
+        $userOriginBalance = '';
+
+        if ($tradeFromUserType == 'U') {
+            $userOriginBalance = $extra['from_origin_balance'] ?? '';
+        } elseif ($tradeToUserType == 'U') {
+            $userOriginBalance = $extra['to_origin_balance'] ?? '';
+        }
+
+        return $userOriginBalance;
+
     }
 }
