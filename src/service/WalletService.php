@@ -105,6 +105,9 @@ class WalletService
             $userBalance   = $fromUserType == 'U' ? $fromWallet->balance : $toWallet->balance;
             $tenantBalance = $fromUserType == 'A' ? $fromWallet->balance : $toWallet->balance;
         }
+        if (in_array($fromUserType, ['P', 'A']) && in_array($toUserType, ['P', 'A'])) {
+            $tenantBalance = $fromUserType == 'A' ? $fromWallet->balance : $toWallet->balance;
+        }
 
         $flowData = [
             'user_id'         => $userId,
